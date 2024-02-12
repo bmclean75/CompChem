@@ -55,7 +55,8 @@ def visualize_csv(filename, timestep):
 	
 	# Setup color mapping for 'e' values
 	lookup_table = pvs.GetColorTransferFunction('e')
-	lookup_table.RGBPoints = [min_e, 0.0, 0.0, 1.0, max_e, 1.0, 0.0, 0.0]  # Example, adjust according to your data's range
+	#lookup_table.RGBPoints = [min_e, 0.0, 0.0, 1.0, max_e, 1.0, 0.0, 0.0]  # Example, adjust according to your data's range, or
+	lookup_table.RGBPoints = [-0.001, 0.0, 0.0, 1.0, 0.001, 1.0, 0.0, 0.0]  # Use a binary colour table, assume every atom is either -ve or positive
 	lookup_table.ColorSpace = 'RGB'
 
 	# Get active view or create one if not present

@@ -14,10 +14,12 @@
 using namespace std;
 
 /*
-main() currently generates an experiment with ionic carbon in excess oxygen, and
-models the subsequent burning process. Different elements and ions can be generated
-by creating TN_Atoms with differing atomic number and mass, and different numbers of
-electrons.
+main() currently generates an experiment modelling the burning of carbon in excess oxygen.
+This is a covalent bonding process, but rather than explicitly modelling the sharing of
+electrons, the modelling uses a heuristic - initially modelling carbon and oxygen atoms as
+varying in electronegativity. Electronegativity was simulated by giving the reaction
+constitutents a partial charge approximating the charge they would assume once covalently
+bonded. This charge allows for the attraction and bonding of atoms.
 */
 
 
@@ -41,12 +43,12 @@ int main(){
 		
 		//create carbon atom
 		TN_Atom carbon_01(6,6,rand_coord(gen),rand_coord(gen),rand_coord(gen));
-		carbon_01.addInnerShellElectrons(2); //add electrons for ionic form C_+4
+		carbon_01.addInnerShellElectrons(2); //add less electrons to simulate lower electronegativity
 
 		//create oxygen atoms
 		TN_Atom oxygen_01(8,8,rand_coord(gen),rand_coord(gen),rand_coord(gen));
 		TN_Atom oxygen_02(8,8,rand_coord(gen),rand_coord(gen),rand_coord(gen));
-		oxygen_01.addInnerShellElectrons(10); //add electrons for ionic form O_-2
+		oxygen_01.addInnerShellElectrons(10); //add more electrons to simulate higher electronegativity
 		oxygen_02.addInnerShellElectrons(10);
 
 		//add atoms to the experiment
@@ -67,7 +69,7 @@ int main(){
 	and forth, as they repeatedly attract, move too close, and repel, before attracting again. If dt is
 	much too large, atoms may instead interact by 'slingshotting' off one another, as attraction leads
 	them into extremely close proximity in one step, resulting in extreme repulsion and dispersion. If
-	dt is too small, neither oscillation nor slingshotting occurs, but the atoms will move very slowly.
+	dt is too small, neither oscillation nor slingshotting occurs, rather the atoms will move very slowly.
 	*/
 
 	int snap = 0;

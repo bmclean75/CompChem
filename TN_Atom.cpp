@@ -119,7 +119,7 @@ void forceBetweenParticles(TN_AtomicParticle &a, TN_AtomicParticle &b){ //force 
 			std::cout << "particles have separation zero!" << std::endl;
 		}else{
 			
-			// The electrostatic force bween atoms is defined by Coulomb's law, and goverened by their charges
+			// The electrostatic force bween atoms is defined by Coulomb's law, and governed by their charges
 			// and their separation distance. This may be repulsive (like charges) or attractive (differing charges).
 			// The minus sign ensures repulsion of like (+/+ or -/-) charges.
 			double electrostaticForce = -g_CoulombConst*((a.m_charge * b.m_charge)/pow(separation,2.0));
@@ -152,7 +152,7 @@ void forceBetweenParticles(TN_AtomicParticle &a, TN_AtomicParticle &b){ //force 
 				std::cout << "****************************************" << std::endl;
 			#endif
 
-			// Attempt to downcast to TN_Electron using dynamic_cast
+			// Attempt to downcast to TN_Electron using dynamic_cast, fails if particles are not electrons
 			TN_Electron* e_a = dynamic_cast<TN_Electron*>(&a);
 			TN_Electron* e_b = dynamic_cast<TN_Electron*>(&b);
 			
